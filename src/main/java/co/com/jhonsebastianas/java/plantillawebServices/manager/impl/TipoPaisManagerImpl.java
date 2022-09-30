@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import co.com.jhonsebastianas.java.plantillawebServices.dao.TipoPaisDao;
 import co.com.jhonsebastianas.java.plantillawebServices.manager.TipoPaisManager;
 import co.com.jhonsebastianas.java.plantillawebServices.models.dto.TipoPaisInDTO;
+import co.com.jhonsebastianas.java.plantillawebServices.models.dto.TipoPaisOutDTO;
 import co.com.jhonsebastianas.java.plantillawebServices.models.entity.TipoPaisEntity;
 
 /**
@@ -47,6 +48,14 @@ public class TipoPaisManagerImpl implements TipoPaisManager {
 	@Override
 	public List<TipoPaisEntity> getAllTipoPais() {
 		return this.tipoPaisDao.findAllPaises();
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.jhonsebastianas.java.plantillawebServices.manager.TipoPaisManager#findByCodigoPais(java.lang.String)
+	 */
+	@Override
+	public TipoPaisOutDTO findByCodigoPais(String codigoPais) {
+		return this.tipoPaisDao.findByCodigoPais(codigoPais);
 	}
 
 }

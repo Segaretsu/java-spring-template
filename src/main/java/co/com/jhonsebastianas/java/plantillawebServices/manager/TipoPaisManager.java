@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 
 import co.com.jhonsebastianas.java.plantillawebServices.models.dto.TipoPaisInDTO;
+import co.com.jhonsebastianas.java.plantillawebServices.models.dto.TipoPaisOutDTO;
 import co.com.jhonsebastianas.java.plantillawebServices.models.entity.TipoPaisEntity;
 
 /**
@@ -34,4 +35,13 @@ public interface TipoPaisManager {
 	 */
 	List<TipoPaisEntity> getAllTipoPais();
 
+	/**
+	 * Método encargado de retornar el tipoPais DTO buscado por codigoPais <br>
+	 * Creado el 27/09/2022 a las 12:45:22 a. m. <br>
+	 *
+	 * @author <a href="https://www.jhonsebastianas.com/">jhonsebastianas</a></br>
+	 * @param codigoPais
+	 * @return
+	 */
+	TipoPaisOutDTO findByCodigoPais(String codigoPais);
 }

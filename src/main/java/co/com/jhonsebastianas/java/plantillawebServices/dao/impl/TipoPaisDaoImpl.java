@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import co.com.jhonsebastianas.java.plantillawebServices.conf.JPAConfigMultiple;
 import co.com.jhonsebastianas.java.plantillawebServices.dao.TipoPaisDao;
+import co.com.jhonsebastianas.java.plantillawebServices.models.dto.TipoPaisOutDTO;
 import co.com.jhonsebastianas.java.plantillawebServices.models.entity.TipoPaisEntity;
+import co.com.jhonsebastianas.java.plantillawebServices.models.util.jpasupport.EntityFactory;
 
 /**
  * Clase encargada de definir los métodos para la capa de datos de pais. <br>
@@ -65,6 +67,20 @@ public class TipoPaisDaoImpl implements TipoPaisDao {
 	public List<TipoPaisEntity> findAllPaises() {
 		Query query = entityManager.createNativeQuery("SELECT * FROM TIPO_PAIS", TipoPaisEntity.class);
 		return (List<TipoPaisEntity>) query.getResultList();
+	}
+
+	/* (non-Javadoc)
+	 * @see co.com.jhonsebastianas.java.plantillawebServices.dao.TipoPaisDao#findByCodigoPais(java.lang.String)
+	 */
+	@Override
+	public TipoPaisOutDTO findByCodigoPais(String codigoPais) {
+		Query query = entityManager
+				.createNativeQuery(
+						"SELECT tp.nombre, tp.codigo_pais " +
+						"FROM TIPO_PAIS tp " + 
+						"WHERE tp.CODIGO_PAIS = :codigoPais ");
+		query.setParameter("codigoPais", codigoPais);
+		return new EntityFactory(query).reflect(TipoPaisOutDTO.class).orElse(null);
 	}
 
 }
